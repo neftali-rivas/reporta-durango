@@ -1,17 +1,38 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
+/*=====================================================================
+SCHEMA PARA REPORTES CIUDADANOS (S3 STORAGE)
+- Guarda imágenes en S3
+- Autenticación: solo usuarios autenticados pueden crear/ver
+- Incluye conteo de vistas, geolocalización y estado
+=====================================================================*/
+
 const schema = a.schema({
-  Todo: a
+  // ============ MODELO: REPORT ============
+
+  Report: a
     .model({
-      content: a.string(),
+      title: a.string().required(),
+      description: a.string(),
+      category: a.string().required(), // Ejemplo: "bache", "luz rota", etc.
+      status: a.string().default("Pendiente"), // "Pendiente", "En progreso", "Resuelto"
+      location: a.string().required(), // Dirección o nombre de la zona
+      latitude: a.float(),
+      longitude: a.float(),
+      // ---- ARCHIVO S3 ----
+      s3Key: a.string().required(), // clave del archivo en S3 (imagen principal)
+      thumbnailKey: a.string(), // opcional: miniatura o versión reducida
+      mimeType: a.string(), // image/jpeg, image/png, etc.
+      fileSize: a.integer(), // tamaño del archivo en bytes
+      author: a.string(), // nombre o email del autor
+      date: a.date(),
+      views: a.integer().default(0),
+      createdAt: a.datetime(),
+      updatedAt: a.datetime(),
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [
+      allow.authenticated(), // Solo usuarios logueados
+    ]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -19,39 +40,6 @@ export type Schema = ClientSchema<typeof schema>;
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: "apiKey",
-    // API Key is used for a.allow.public() rules
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30,
-    },
+    defaultAuthorizationMode: "userPool", // Solo usuarios autenticados
   },
 });
-
-/*== STEP 2 ===============================================================
-Go to your frontend source code. From your client-side code, generate a
-Data client to make CRUDL requests to your table. (THIS SNIPPET WILL ONLY
-WORK IN THE FRONTEND CODE FILE.)
-
-Using JavaScript or Next.js React Server Components, Middleware, Server 
-Actions or Pages Router? Review how to generate Data clients for those use
-cases: https://docs.amplify.aws/gen2/build-a-backend/data/connect-to-API/
-=========================================================================*/
-
-/*
-"use client"
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "@/amplify/data/resource";
-
-const client = generateClient<Schema>() // use this Data client for CRUDL requests
-*/
-
-/*== STEP 3 ===============================================================
-Fetch records from the database and use them in your frontend component.
-(THIS SNIPPET WILL ONLY WORK IN THE FRONTEND CODE FILE.)
-=========================================================================*/
-
-/* For example, in a React component, you can use this snippet in your
-  function's RETURN statement */
-// const { data: todos } = await client.models.Todo.list()
-
-// return <ul>{todos.map(todo => <li key={todo.id}>{todo.content}</li>)}</ul>

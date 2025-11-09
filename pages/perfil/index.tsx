@@ -105,8 +105,7 @@ const mockReports = [
     description:
       "Se encuentra un bache de aproximadamente 1 metro de profundidad que representa un peligro para conductores.",
     image: "/pothole-street.jpg",
-    date: "2025-10-28",
-    views: 245,
+    date: "2025-10-28"
   },
   {
     id: "2",
@@ -117,8 +116,7 @@ const mockReports = [
     description:
       "La luminaria no prende durante la noche, dejando oscura una zona de alto tránsito.",
     image: "/broken-street-light.jpg",
-    date: "2025-10-27",
-    views: 152,
+    date: "2025-10-27"
   },
   {
     id: "3",
@@ -129,8 +127,7 @@ const mockReports = [
     description:
       "La tapa del alcantarilla está suelta y representa un peligro para peatones.",
     image: "/manhole-cover-loose.jpg",
-    date: "2025-10-23",
-    views: 76,
+    date: "2025-10-23"
   },
 ];
 
