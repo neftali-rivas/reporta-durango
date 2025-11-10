@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import { getUrl } from "aws-amplify/storage";
 import type { Schema } from "@/amplify/data/resource";
+import { signOut } from "aws-amplify/auth";
 import {
   View,
   Flex,
@@ -43,9 +44,9 @@ export default function ReportesCiudadanos() {
   // Estados de UI
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  const handleLogout = () => {
-    console.log("Cerrando sesión...");
-  };
+  const handleLogout = async () => {
+      await signOut(); 
+    };
 
   // 🔄 Cargar reportes al montar el componente
   useEffect(() => {
@@ -158,19 +159,7 @@ export default function ReportesCiudadanos() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // 👁️ Incrementar contador de vistas
-  async function incrementViews(report: ReportWithUrl) {
-    try {
-      await client.models.Report.update({
-        id: report.id,
-        views: (report.views || 0) + 1,
-      });
-      setSelectedReport({ ...report, views: (report.views || 0) + 1 });
-    } catch (error) {
-      console.error("Error actualizando vistas:", error);
-    }
-  }
-
+  
   // 🔍 Filtrar reportes
   const filteredReports = reports.filter((r) => {
     const matchCategory = category === "Todos" || r.category === category;
@@ -230,7 +219,6 @@ export default function ReportesCiudadanos() {
                 <Text color="gray">
                   📅 {selectedReport.date || new Date(selectedReport.createdAt || "").toLocaleDateString()}
                 </Text>
-                <Text color="gray">👁️ {selectedReport.views || 0} vistas</Text>
               </Flex>
 
               {selectedReport.imageUrl ? (
@@ -282,14 +270,6 @@ export default function ReportesCiudadanos() {
 
               {/* Información adicional */}
               <Divider marginTop="1rem" />
-              <Flex justifyContent="space-between" marginTop="1rem" wrap="wrap">
-                <Text fontSize="small" color="gray">
-                  ID del reporte: {selectedReport.id}
-                </Text>
-                <Text fontSize="small" color="gray">
-                  Tamaño de archivo: {selectedReport.fileSize ? `${(selectedReport.fileSize / 1024 / 1024).toFixed(2)} MB` : "N/A"}
-                </Text>
-              </Flex>
             </Card>
           </View>
         ) : (
@@ -392,7 +372,6 @@ export default function ReportesCiudadanos() {
                           width="300px"
                           onClick={() => {
                             setSelectedReport(r);
-                            incrementViews(r);
                           }}
                           style={{ cursor: "pointer" }}
                         >
@@ -453,9 +432,7 @@ export default function ReportesCiudadanos() {
                               <Text fontSize="small" color="gray">
                                 📅 {r.date || new Date(r.createdAt || "").toLocaleDateString()}
                               </Text>
-                              <Text fontSize="small" color="gray">
-                                👁️ {r.views || 0}
-                              </Text>
+                             
                             </Flex>
                           </View>
                         </Card>

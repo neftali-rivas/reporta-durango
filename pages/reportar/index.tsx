@@ -5,6 +5,8 @@ import Link from "next/link"
 import { generateClient } from "aws-amplify/data"
 import { uploadData } from "aws-amplify/storage"
 import type { Schema } from "@/amplify/data/resource"
+import { signOut } from "aws-amplify/auth";
+
 import {
   View,
   Text,
@@ -31,9 +33,9 @@ type CategoryType =
   | "otro"
 
 export default function CreateReportPage() {
-  const handleLogout = () => {
-    console.log("Cerrando sesión...")
-  }
+  const handleLogout = async () => {
+        await signOut(); 
+      };
 
   // Estados del formulario
   const [title, setTitle] = useState("")
