@@ -82,6 +82,20 @@ export default function Header({ isLoggedIn, currentPage, handleLogout }: Header
               </AmplifyLink>
 
               <AmplifyLink
+                href="/educacion"
+                style={{
+                  color:
+                    currentPage === "educacion"
+                      ? "var(--amplify-colors-brand-primary-100)"
+                      : "var(--amplify-colors-font-tertiary)",
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                }}
+              >
+                Tomar acción
+              </AmplifyLink>
+
+              <AmplifyLink
                 href="/mapa"
                 style={{
                   color:
@@ -95,6 +109,19 @@ export default function Header({ isLoggedIn, currentPage, handleLogout }: Header
                 Mapa
               </AmplifyLink>
 
+              <AmplifyLink
+                href="/estadisticas"
+                style={{
+                  color:
+                    currentPage === "estadisticas"
+                      ? "var(--amplify-colors-brand-primary-100)"
+                      : "var(--amplify-colors-font-tertiary)",
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                }}
+              >
+                Estadisticas
+              </AmplifyLink>
               {/* Menú usuario */}
               <View style={{ position: "relative" }}>
                 <Button

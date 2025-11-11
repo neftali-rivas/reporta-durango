@@ -78,7 +78,7 @@ export default function Footer() {
                 Mapa
               </Link>
               <Link
-                href="#"
+                href="/educacion"
                 fontSize="0.875rem"
                 color="var(--amplify-colors-font-tertiary)"
                 style={{ textDecoration: "none" }}
@@ -89,8 +89,23 @@ export default function Footer() {
                   (e.currentTarget.style.color = "var(--amplify-colors-font-tertiary)")
                 }
               >
-                Sobre Nosotros
+                Tomar acción
               </Link>
+              <Link
+                href="/estadisticas"
+                fontSize="0.875rem"
+                color="var(--amplify-colors-font-tertiary)"
+                style={{ textDecoration: "none" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "var(--amplify-colors-font-primary)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "var(--amplify-colors-font-tertiary)")
+                }
+              >
+                Estadísticas
+              </Link>
+              
             </Flex>
           </Flex>
 

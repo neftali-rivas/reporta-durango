@@ -283,7 +283,7 @@ export default function ReportesCiudadanos() {
               </div>
               <Button
                 variation="primary"
-                onClick={() => window.location.href = "/create"}
+                onClick={() => window.location.href = "/reportar"}
               >
                 ➕ Crear Reporte
               </Button>
