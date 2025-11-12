@@ -96,6 +96,20 @@ export default function Header({ isLoggedIn, currentPage, handleLogout }: Header
               </AmplifyLink>
 
               <AmplifyLink
+                href="/accion"
+                style={{
+                  color:
+                    currentPage === "accion"
+                      ? "var(--amplify-colors-brand-primary-100)"
+                      : "var(--amplify-colors-font-tertiary)",
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                }}
+              >
+                Acción verde
+              </AmplifyLink>
+
+              <AmplifyLink
                 href="/mapa"
                 style={{
                   color:
@@ -171,8 +185,8 @@ export default function Header({ isLoggedIn, currentPage, handleLogout }: Header
                 )}
               </View>
 
-              <Button as="a" href="/reportar" variation="primary" size="small">
-                + Nuevo Reporte
+              <Button as="a" href="/calendario" variation="primary" size="small">
+                📅 Eventos
               </Button>
             </>
           ) : (

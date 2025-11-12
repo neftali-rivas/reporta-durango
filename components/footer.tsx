@@ -91,6 +91,21 @@ export default function Footer() {
               >
                 Tomar acción
               </Link>
+
+              <Link
+                href="/educa"
+                fontSize="0.875frem"
+                color="var(--amplify-colors-font-tertiary)"
+                style={{ textDecoration: "none" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "var(--amplify-colors-font-primary)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "var(--amplify-colors-font-tertiary)")
+                }
+              >
+                Acción verde
+              </Link>
               <Link
                 href="/estadisticas"
                 fontSize="0.875rem"
