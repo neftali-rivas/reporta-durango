@@ -78,8 +78,8 @@ export default function Footer() {
                 Mapa
               </Link>
               <Link
-                href="/educacion"
-                fontSize="0.875rem"
+                href="/educa"
+                fontSize="0.875frem"
                 color="var(--amplify-colors-font-tertiary)"
                 style={{ textDecoration: "none" }}
                 onMouseEnter={(e) =>

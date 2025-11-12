@@ -82,10 +82,10 @@ export default function Header({ isLoggedIn, currentPage, handleLogout }: Header
               </AmplifyLink>
 
               <AmplifyLink
-                href="/educacion"
+                href="/educa"
                 style={{
                   color:
-                    currentPage === "educacion"
+                    currentPage === "educa"
                       ? "var(--amplify-colors-brand-primary-100)"
                       : "var(--amplify-colors-font-tertiary)",
                   fontSize: "0.9rem",
