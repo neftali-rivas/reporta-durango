@@ -388,9 +388,9 @@ export default function GuiaEducativa() {
               <Card variation="elevated" marginTop="2rem" padding="2rem" textAlign="center" backgroundColor="var(--amplify-colors-purple-10)">
                 <Text fontSize="xx-large">💡</Text>
                 <Text fontSize="large" fontStyle="italic" marginTop="1rem">
-                  "Una ciudad es tan buena como la participación de sus ciudadanos. 
-                  Cada reporte es un acto de amor hacia nuestra comunidad."
-                </Text>
+  &quot;Una ciudad es tan buena como la participación de sus ciudadanos. 
+  Cada reporte es un acto de amor hacia nuestra comunidad.&quot;
+</Text>
               </Card>
             </View>
           )}
