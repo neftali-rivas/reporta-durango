@@ -11,6 +11,7 @@ import {
   Badge,
 } from "@aws-amplify/ui-react";
 import Header from "../../components/header";
+
 import Footer from "../../components/footer";
 
 export default function GuiaEducativa() {
@@ -420,7 +421,7 @@ export default function GuiaEducativa() {
           </Card>
         </View>
       </main>
-
+      
       <Footer />
     </>
   );

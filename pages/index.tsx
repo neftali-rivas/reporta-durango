@@ -35,6 +35,7 @@ const CommentIcon = () => (
   </svg>
 );
 import Header from "../components/header";
+
 import Footer from "../components/footer";
 
 const client = generateClient<Schema>();

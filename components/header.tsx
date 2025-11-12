@@ -188,6 +188,10 @@ export default function Header({ isLoggedIn, currentPage, handleLogout }: Header
               <Button as="a" href="/calendario" variation="primary" size="small">
                 📅 Eventos
               </Button>
+
+              <Button as="a" href="/exito" variation="primary" size="small">
+                💱 Impacto
+              </Button>
             </>
           ) : (
             <>
